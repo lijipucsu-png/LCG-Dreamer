@@ -1,0 +1,13 @@
+eclipse-sumo==1.27.1
+traci==1.27.1
+sumolib==1.27.1
+numpy==1.26.4
+scipy==1.13.1
+pandas==2.3.3
+matplotlib==3.9.4
+torch>=2.5,<2.9
+gymnasium==1.1.1
+pettingzoo==1.24.3
+tensorboard==2.20.0
+mbrl==0.1.5
+pytest==8.4.2

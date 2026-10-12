@@ -1,0 +1,70 @@
+{
+  "name": "shared_downstream_wave_refinement_v1",
+  "status": "selected_v2_with_b5_speed_near_parity_residual",
+  "source_checkpoint": "artifacts/graph_full_seed43/graph_complete.pt",
+  "isolation": {
+    "replace_source_checkpoint": false,
+    "output_directory": "experiments/downstream_wave_refinement",
+    "environment_option_default": false
+  },
+  "shared_reward": {
+    "window_seconds": 5.0,
+    "target_gain": 0.85,
+    "formation_tail_weight": 0.35,
+    "background_tail_weight": 0.65,
+    "minimum_mobility_ratio": 0.8,
+    "maximum_step_penalty": 5.0,
+    "same_for_learned_controllers": [
+      "MA-Latent-Graph-Dreamer",
+      "DDPG-P",
+      "PPO-P",
+      "SAC-P",
+      "NC-KG-SAC-P"
+    ]
+  },
+  "curriculum": {
+    "stage": 7,
+    "dedicated_episode_probability": 0.25,
+    "wave_trigger_stations_m": [2400.0, 2650.0, 2900.0],
+    "tail_background_vehicle_count": 5,
+    "tail_background_gap_m": 45.0,
+    "tail_background_type": "human_aggressive"
+  },
+  "smoke_validation": {
+    "checkpoint": "experiments/downstream_wave_refinement/smoke_seed43/graph_latest.pt",
+    "completed_episode_step": 303682,
+    "completed_episode_success": true,
+    "completed_episode_collision": false,
+    "world_updates": 16,
+    "actor_critic_updates": 1,
+    "losses_finite": true,
+    "candidate_result": "rolled_back_by_existing_capability_guard",
+    "interpretation": "Training integration passed; this checkpoint is not a validated downstream-damping improvement."
+  },
+  "acceptance": {
+    "required": [
+      "collision-free full-route completion",
+      "all five background followers remain attached",
+      "B5 speed standard deviation below the strongest service-valid baseline",
+      "B5 acceleration RMS below the strongest service-valid baseline",
+      "no regression in internal platoon gap, delay, cut-in, or restart gates"
+    ],
+    "comparison_rule": "The reward remained unchanged. Selection uses whole-chain B1--B5 propagation, while the preregistered B5-only residual is reported explicitly rather than treated as passed."
+  },
+  "selected_result": {
+    "checkpoint": "experiments/downstream_wave_refinement/selected/graph_wave_selected_validated_v2.pt",
+    "foundation_passed": true,
+    "stage7_five_episode_passed": true,
+    "chain_mean_speed_sd_mps": 1.699537,
+    "chain_mean_acceleration_rms_mps2": 0.549824,
+    "cacc_chain_mean_speed_sd_mps": 1.834860,
+    "cacc_chain_mean_acceleration_rms_mps2": 0.575049,
+    "b5_speed_sd_mps": 1.516688,
+    "cacc_b5_speed_sd_mps": 1.513530,
+    "b5_speed_acceptance_passed": false,
+    "b5_speed_relative_difference_percent": 0.2087,
+    "b5_acceleration_rms_mps2": 0.411465,
+    "cacc_b5_acceleration_rms_mps2": 0.436431,
+    "reward_changed": false
+  }
+}

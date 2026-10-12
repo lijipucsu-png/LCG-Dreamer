@@ -1,0 +1,45 @@
+architecture: ma_latent_graph_dreamer_v1
+model:
+  hidden_dim: 128
+  stochastic_dim: 16
+  stochastic_classes: 16
+  embedding_dim: 256
+  communication_dim: 16
+  communication_bits: 8
+  edge_belief_dim: 128
+  communication_history: 3
+  prediction_horizon: 30
+  action_min: -3.0
+  action_max: 1.2
+  maximum_jerk: 1.5
+  nominal_cruise_speed: 25.0
+  cruise_coefficient: 2.0
+  rejoin_coefficient: 1.0
+wave_attenuation_coefficient: 2.0
+wave_guidance_target_gap: 30.0
+wave_guidance_gap_gain: 0.005
+wave_guidance_relative_speed_gain: 0.28
+wave_guidance_front_acceleration_gain: 0.10
+wave_guidance_speed_gain: 0.40
+wave_guidance_acceleration_bias: 0.0
+wave_guidance_blend: 1.0
+training:
+  warmup_steps: 20000
+  actor_warmup_steps: 20000
+  world_pretrain_updates: 5000
+  replay_capacity: 30000
+  sequence_length: 50
+  batch_size: 16
+  update_every: 5
+  actor_update_every: 20
+  behavior_initial_weight: 10.0
+  behavior_decay_updates: 10000
+  behavior_cutoff_updates: 50000
+  evaluation_interval: 50000
+  checkpoint_interval: 10000
+  min_steps_before_convergence: 300000
+  max_sumo_steps: 1000000
+validation:
+  training_seeds: [42, 43, 44]
+  final_evaluation_seeds: [30000, 30001, 30002, 30003, 30004, 30005, 30006, 30007, 30008, 30009, 30010, 30011, 30012, 30013, 30014, 30015, 30016, 30017, 30018, 30019]
+  full_retrain_ablations: [no_semantic_communication, no_auxiliary_distillation]

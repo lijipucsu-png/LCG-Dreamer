@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sumo-platoon-control-rl-experiment"
+version = "0.1.0"
+description = "Six-truck SUMO platoon control with DreamerV3 and CTDE multi-agent RL"
+requires-python = ">=3.9,<3.12"
+dynamic = ["dependencies"]
+
+[project.scripts]
+platoon-control-experiment = "platoon_control.cli:main"
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements-control.txt"]}
+
+[tool.setuptools.packages.find]
+include = ["platoon_control*", "platoon_sumo*", "third_party*"]

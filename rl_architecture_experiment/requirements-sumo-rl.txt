@@ -1,0 +1,2 @@
+# Kept as a compatibility alias for the complete control environment.
+-r requirements-control.txt

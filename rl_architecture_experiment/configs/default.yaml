@@ -1,0 +1,29 @@
+model:
+  history_steps: 50
+  neighbor_history_steps: 20
+  prediction_horizon: 30
+  max_front_vehicles: 8
+  max_neighbors: 12
+  trajectory_modes: 3
+  hidden_dim: 128
+  stochastic_dim: 16
+  stochastic_classes: 16
+  ensemble_size: 5
+follower_rl:
+  hidden_dim: 256
+  gamma: 0.99
+  target_tau: 0.005
+  entropy_coefficient: 0.01
+  reward_scale: 0.1
+  accel_min: -3.0
+  accel_max: 1.2
+training:
+  seed: 42
+  batch_size: 64
+  learning_rate: 0.0003
+  weight_decay: 0.00001
+  gradient_clip: 100.0
+  device: auto
+  mixed_precision: true
+  checkpoint_dir: artifacts/checkpoints
+  log_dir: artifacts/logs

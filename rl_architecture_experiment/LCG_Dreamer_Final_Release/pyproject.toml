@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lcg-dreamer-platoon-release"
+version = "1.0.0"
+description = "Final six-truck LCG-Dreamer platoon controller and SUMO runtime"
+requires-python = ">=3.9,<3.12"
+dynamic = ["dependencies"]
+
+[project.scripts]
+lcg-dreamer-demo = "final_model.demo:main"
+lcg-dreamer-verify = "final_model.verify:main"
+lcg-dreamer-finetune = "final_model.finetune:main"
+platoon-control-experiment = "platoon_control.cli:main"
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+
+[tool.setuptools.packages.find]
+include = [
+  "final_model*",
+  "platoon_control*",
+  "platoon_sumo*",
+  "cooperative_lane_change*",
+  "mixed_traffic_lane_change*",
+  "classical_comparison*",
+  "predictive_comparison*",
+  "third_party*",
+]
+
+[tool.setuptools.package-data]
+platoon_sumo = ["scenario/*.xml", "scenario/*.sumocfg"]
