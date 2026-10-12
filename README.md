@@ -1,4 +1,4 @@
-# LCG-Dreamer: Six-Vehicle Platoon Control
+# LCG-Dreamer: Unified Full-Scenario Heavy-Duty Truck Platooning with a Latent-Communication Graph World Model
 
 Source code and usage instructions for the six-truck platoon-control study. The project implements longitudinal control with a latent communication graph world model, cooperative platoon lane changes, comparison controllers, and ablation experiments in SUMO.
 
